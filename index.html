@@ -73,7 +73,7 @@
       <div class="row">
         <div class="col-lg-12 text-center">
           <h2 class="section-heading text-uppercase">QUIZ!!</h2>
-          <form method="get" action="result.js">
+          <form method="get" action="#team">
           <table width="100%" border="0" cellspacing="0" cellpadding="3"> <!-- 테이블 시작 --->
             <tbody>
 
@@ -98,10 +98,10 @@
                     $('tbody').append('<td colspan="4" style="font-family:나눔고딕; font-size:20px; color:#474747; padding: 0 0 0 15px; font-weight:bold;">'+plus+'. '+quiz[i]['question']+'</td>'+'</tr>');
                     $('tbody').append('<tr>'+'<td height="20px"'+'</td>'+'</tr>')
                     $('tbody').append('<tr>');
-                    $('tbody').append('<td style="font-family:나눔고딕; font-size:15px; color:#474747; padding: 0 15px 0 15px;"><input type="radio" name="question" value="1">'+quiz[i]['no1']+'</td>');
-                    $('tbody').append('<td style="font-family:나눔고딕; font-size:15px; color:#474747; padding: 0 15px 0 15px;"><input type="radio" name="question" value="2">'+quiz[i]['no2']+'</td>');
-                    $('tbody').append('<td style="font-family:나눔고딕; font-size:15px; color:#474747; padding: 0 15px 0 15px;"><input type="radio" name="question" value="3">'+quiz[i]['no3']+'</td>');
-                    $('tbody').append('<td style="font-family:나눔고딕; font-size:15px; color:#474747; padding: 0 15px 0 15px;"><input type="radio" name="question" value="4">'+quiz[i]['no4']+'</td>'+'</tr>');
+                    $('tbody').append('<td style="font-family:나눔고딕; font-size:15px; color:#474747; padding: 0 15px 0 15px;"><input type="radio" name="question'+plus+'" value="1">'+quiz[i]['no1']+'</td>');
+                    $('tbody').append('<td style="font-family:나눔고딕; font-size:15px; color:#474747; padding: 0 15px 0 15px;"><input type="radio" name="question'+plus+'" value="2">'+quiz[i]['no2']+'</td>');
+                    $('tbody').append('<td style="font-family:나눔고딕; font-size:15px; color:#474747; padding: 0 15px 0 15px;"><input type="radio" name="question'+plus+'" value="3">'+quiz[i]['no3']+'</td>');
+                    $('tbody').append('<td style="font-family:나눔고딕; font-size:15px; color:#474747; padding: 0 15px 0 15px;"><input type="radio" name="question'+plus+'" value="4">'+quiz[i]['no4']+'</td>'+'</tr>');
                     $('tbody').append('<tr>'+'<td height="50px"'+'</td>'+'</tr>')
                     plus=plus+1; //for문 끝나면 문제 번호 하나씩 올리기
                   }
