@@ -27,7 +27,7 @@ function printQuiz(no){
   var item = data[no];
 
   var exmple = '';
-  for( var i=0; i <  item.examples.length; i++){
+  for( var i=0; i <  item.examples.lenght; i++){
     exmple += '<li><input name="q'+no+'" type="radio" value="'+i+'">' + item.examples[i] + '</li>';
   }
 

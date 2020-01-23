@@ -36,11 +36,11 @@ var quiz=[
       '어서 오십시오',
       '무엇을 하십니끼?',
     ],
-    hit:1.
+    hit:1,
     "ex":[
       '답은 1번이다',
       '해설 : 어디가 어드레, 감디가 가느냐라는 뜻이다'
-    ]
+    ],
   },
 
   {
@@ -50,7 +50,6 @@ var quiz=[
       '은갈치',
       '흑돼지',
       '현무암',
-
     ],
     hit:4,
     "ex":[
@@ -219,4 +218,39 @@ var quiz=[
     "no3" : "③ 풀다",
     "no4" : "④ 매우크다"
   }
-]
+];
+
+var no=0;
+
+function printQuiz(){
+
+  var question=quiz[no];
+
+  var num=no+1; //num은 앞에 문제 번호를 붙이기 위해 선언한 변수로 no가 0이기 때문에 1을 더해줬다.
+
+  $('tbody').append('<tr>');
+  $('tbody').append('<td colspan="2" style="font-family:나눔고딕; font-size:30px; color:#010730; padding: 0 12px 40px 12px; font-weight:bold">'+num+'. '+quiz[no]['question']+'</td>'+'</tr>');
+  // ↑ 문제를 테이블에 넣는 코드.
+  $('tbody').append('<tr>'+'<td height="30px">'+'</td>'+'</tr>');
+
+  for(var a=0; a < question.examples.length; a++){
+    if(a%2==0){
+      $('tbody').append('<tr>');
+    }
+    $('tbody').append('<td style="font-family:나눔고딕; font-size:20px; color:#010730;"><input name="q"'+no+'" type="radio" value="'+a+'">'+question.examples[a]+'</td>');
+    if(a%2!=0){
+      $('tbody').append('</tr>');
+      $('tbody').append('<tr>'+'<td height="20px"'+'</td>'+'</tr>');
+    }
+
+  }
+
+}
+
+printQuiz();
+
+$('#submitButton').click(function(){
+  console.log('click');
+  no=no+1;
+  console.log(no);
+})
