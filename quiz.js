@@ -226,31 +226,35 @@ function printQuiz(){
 
   var question=quiz[no];
 
-  var num=no+1; //num은 앞에 문제 번호를 붙이기 위해 선언한 변수로 no가 0이기 때문에 1을 더해줬다.
+  var num=no+1; //num은 앞에 문제 번호를 붙이기 위해 선언한 변수로 no가 0이기 때문에 1을 더함
 
   $('tbody').append('<tr>');
   $('tbody').append('<td colspan="2" style="font-family:나눔고딕; font-size:30px; color:#010730; padding: 0 12px 40px 12px; font-weight:bold">'+num+'. '+quiz[no]['question']+'</td>'+'</tr>');
-  // ↑ 문제를 테이블에 넣는 코드.
+  // ↑ 문제를 테이블에 넣는 코드
   $('tbody').append('<tr>'+'<td height="30px">'+'</td>'+'</tr>');
+  // ↑ 문제와 보기 사이에 여백을 주는 코드
 
   for(var a=0; a < question.examples.length; a++){
     if(a%2==0){
       $('tbody').append('<tr>');
+      // 보기를 두개씩 주기 위해 2의 배수로 나눠서 나눠떨어질 때만 tr을 삽입하도록 함
     }
     $('tbody').append('<td style="font-family:나눔고딕; font-size:20px; color:#010730;"><input name="q"'+no+'" type="radio" value="'+a+'">'+question.examples[a]+'</td>');
     if(a%2!=0){
       $('tbody').append('</tr>');
       $('tbody').append('<tr>'+'<td height="20px"'+'</td>'+'</tr>');
     }
-
+    // 문제 value값 순서
+    // 0  1
+    // 2  4
   }
 
 }
 
-printQuiz();
 
+printQuiz();
 $('#submitButton').click(function(){
-  console.log('click');
-  no=no+1;
-  console.log(no);
-})
+      console.log('click');
+      no=no+1; //정답 확인을 하면 no값을 한단계 증가 시켜 다음 문제로 넘어갈 준비를 함.
+      console.log(no);
+    })
