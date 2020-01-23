@@ -45,7 +45,7 @@ var quiz=[
 
   {
     "question" : "제주도의 특산물이 아닌 것은?",
-    "exmaples":[
+    "examples":[
       '한라봉',
       '은갈치',
       '흑돼지',
@@ -248,13 +248,18 @@ function printQuiz(){
     // 0  1
     // 2  4
   }
+  $('tbody').append('<tr>'+'<td height="40px"'+'</td>'+'</tr>');
 
 }
 
-
+var temp;
 printQuiz();
 $('#submitButton').click(function(){
       console.log('click');
+      temp=no;
       no=no+1; //정답 확인을 하면 no값을 한단계 증가 시켜 다음 문제로 넘어갈 준비를 함.
+      if(temp!==no && quiz.length>no){
+        printQuiz();
+      }
       console.log(no);
-    })
+  })
