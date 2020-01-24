@@ -302,11 +302,12 @@ var quiz=[
 
 var no=0;
 
+var temp;
+var question=quiz[no];
+
 function printQuiz(){
-
-  var question=quiz[no];
-
   var num=no+1; //num은 앞에 문제 번호를 붙이기 위해 선언한 변수로 no가 0이기 때문에 1을 더함
+
 
   $('tbody').append('<tr>');
   $('tbody').append('<td colspan="2" style="font-family:나눔고딕; font-size:30px; color:#010730; padding: 0 12px 40px 12px; font-weight:bold">'+num+'. '+quiz[no]['question']+'</td>'+'</tr>');
@@ -329,8 +330,15 @@ function printQuiz(){
     // 2  4
   }
   $('tbody').append('<tr>'+'<td height="40px"'+'</td>'+'</tr>');
-
 }
+
+function printExplain(){
+  var explain= '';
+  for(var b=0; b < 2; b++){
+    explain +='<li style="font-size:15px; padding: 0 0 10px 0; color:#1C1C1C;">'+question.ex[b]+'</li>';
+  }
+  $("#exp").append(explain);
+} // 틀릴 시, 해설 보여주는 함수.
 
 function checkAns(){
   var checked=$('#target:checked').val();
@@ -338,19 +346,27 @@ function checkAns(){
   // console.log("value값",checked);
   // console.log("hit값",a);
   if(checked==quiz[no].hit){
-    console.log("정답")
+    temp=no;
+    no=no+1; //정답 확인을 하면 no값을 한단계 증가 시켜 다음 문제로 넘어갈 준비를 함.
+    if(temp!==no && quiz.length>no){
+      printQuiz();
+    }
+    console.log("정답");
+  }
+  else {
+    printExplain();
+    console.log(question.ex[0]);
   }
 }
 
-var temp;
+
+
+
 printQuiz();
 $('#submitButton').click(function(){
       console.log('click');
       checkAns();
-      temp=no;
-      no=no+1; //정답 확인을 하면 no값을 한단계 증가 시켜 다음 문제로 넘어갈 준비를 함.
-      if(temp!==no && quiz.length>no){
-        printQuiz();
-      }
+
+
       // console.log("num값",no);
   })
