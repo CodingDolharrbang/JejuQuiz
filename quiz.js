@@ -7,7 +7,7 @@ var quiz=[
       '1,980m',
       '1,923m'
     ],
-    hit:2, //정답
+    hit:1, //정답 (2번이지만 컴퓨터는 0부터 시작해서 -1 해줌)
     "ex":[
       '답은 2번이다',
       '해설 : 한라산은 대한민국에서 가장 큰 산으로 해발 1,947m이다'
@@ -210,7 +210,7 @@ var quiz=[
 
   {
     "question" : "이 음식은 제주도 여름철에 즐기는 음식으로 회를 떠서 무친다음 물을 부어먹는다. 이 음식은 무엇일까?",
-    
+
     "examples":[
       '둠베고기',
       '빙떡',
@@ -319,7 +319,7 @@ function printQuiz(){
       $('tbody').append('<tr>');
       // 보기를 두개씩 주기 위해 2의 배수로 나눠서 나눠떨어질 때만 tr을 삽입하도록 함
     }
-    $('tbody').append('<td style="font-family:나눔고딕; font-size:20px; color:#010730;"><input name="q"'+no+'" type="radio" value="'+a+'">'+question.examples[a]+'</td>');
+    $('tbody').append('<td style="font-family:나눔고딕; font-size:20px; color:#010730;"><input name="q"'+no+'" id="target" type="radio" value="'+a+'">'+question.examples[a]+'</td>');
     if(a%2!=0){
       $('tbody').append('</tr>');
       $('tbody').append('<tr>'+'<td height="20px"'+'</td>'+'</tr>');
@@ -332,10 +332,19 @@ function printQuiz(){
 
 }
 
+function checkAns(){
+  var checked=$('#target:checked').val();
+  var a=quiz[no].hit;
+  if(checked==quiz[no].hit){
+    console.log("정답")
+  }
+}
+
 var temp;
 printQuiz();
 $('#submitButton').click(function(){
       console.log('click');
+      checkAns();
       temp=no;
       no=no+1; //정답 확인을 하면 no값을 한단계 증가 시켜 다음 문제로 넘어갈 준비를 함.
       if(temp!==no && quiz.length>no){
