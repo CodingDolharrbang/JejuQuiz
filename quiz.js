@@ -335,6 +335,8 @@ function printQuiz(){
 function checkAns(){
   var checked=$('#target:checked').val();
   var a=quiz[no].hit;
+  // console.log("value값",checked);
+  // console.log("hit값",a);
   if(checked==quiz[no].hit){
     console.log("정답")
   }
@@ -350,5 +352,5 @@ $('#submitButton').click(function(){
       if(temp!==no && quiz.length>no){
         printQuiz();
       }
-      console.log(no);
+      // console.log("num값",no);
   })
