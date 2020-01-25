@@ -303,11 +303,11 @@ var quiz=[
 var no=0;
 
 var temp;
-var question=quiz[no];
+
 
 function printQuiz(){
   var num=no+1; //num은 앞에 문제 번호를 붙이기 위해 선언한 변수로 no가 0이기 때문에 1을 더함
-
+  var question=quiz[no];
 
   $('tbody').append('<tr>');
   $('tbody').append('<td colspan="2" style="font-family:나눔고딕; font-size:30px; color:#010730; padding: 0 12px 40px 12px; font-weight:bold">'+num+'. '+quiz[no]['question']+'</td>'+'</tr>');
@@ -334,6 +334,7 @@ function printQuiz(){
 
 function printExplain(){
   var explain= '';
+  var question=quiz[no];
   for(var b=0; b < 2; b++){
     explain +='<li style="font-size:15px; padding: 0 0 10px 0; color:#1C1C1C;">'+question.ex[b]+'</li>';
   }
@@ -355,7 +356,7 @@ function checkAns(){
   }
   else {
     printExplain();
-    console.log(question.ex[0]);
+    // console.log(question.ex[0]);
   }
 }
 
