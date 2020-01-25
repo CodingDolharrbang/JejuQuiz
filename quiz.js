@@ -342,10 +342,10 @@ function printExplain(){
 
 function checkAns(){
   var checked=$('#target:checked').val();
-  var a=quiz[no].hit;
-  // console.log("value값",checked);
-  // console.log("hit값",a);
-  if(checked==quiz[no].hit){
+  var a=quiz[no].hit-1;
+  console.log("value값",checked);
+  console.log("hit값",a);
+  if(checked==a){
     temp=no;
     no=no+1; //정답 확인을 하면 no값을 한단계 증가 시켜 다음 문제로 넘어갈 준비를 함.
     if(temp!==no && quiz.length>no){
