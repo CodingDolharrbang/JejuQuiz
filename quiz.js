@@ -327,7 +327,7 @@ function printQuiz(){
     }
     // 문제 value값 순서
     // 0  1
-    // 2  4
+    // 2  3
   }
   $('tbody').append('<tr>'+'<td height="40px"'+'</td>'+'</tr>');
 }
