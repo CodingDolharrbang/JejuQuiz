@@ -301,6 +301,7 @@ var quiz=[
 ];
 
 var no=0;
+var point=0;
 
 var temp;
 
@@ -362,6 +363,8 @@ function checkAns(){
   if(checked==a){
     temp=no;
     no=no+1; //정답 확인을 하면 no값을 한단계 증가 시켜 다음 문제로 넘어갈 준비를 함.
+    point=point+1; //정답일 시 점수 1씩 증가.
+    console.log("점수",point);
     if(temp!==no && quiz.length>no){
       printQuiz();
     }
@@ -382,7 +385,5 @@ printQuiz();
 $('#submitButton').click(function(){
       console.log('click');
       checkAns();
-
-
       // console.log("num값",no);
   })
