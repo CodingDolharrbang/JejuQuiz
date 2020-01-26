@@ -352,7 +352,7 @@ function removeSubmit(){
 } // 정답확인 버튼 제거 함수
 
 function printNext(){
-  $("#submitWrapper").append('<div id="nextButton">다음 문제</div>');
+  $("#submitWrapper").append('<input type="submit" value="다음문제" id="nextButton">');
 } // 다음문제 버튼 출력 함수
 
 function checkAns(){
