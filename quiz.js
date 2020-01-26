@@ -341,6 +341,19 @@ function printExplain(){
   $("#exp").append(explain);
 } // 틀릴 시, 해설 보여주는 함수.
 
+function printSubmit(){
+  $("#submitWrapper").append('<input type="submit" value="정답확인" id="submitButton">');
+} // 정답확인 버튼 출력 함수
+
+function removeSubmit(){
+  removeThing = document.getElementById("submitButton");
+  removeThing.parentNode.removeChild(removeThing);
+} // 정답확인 버튼 제거 함수
+
+function printNext(){
+  $("#submitWrapper").append('<div id="nextButton">다음 문제</div>');
+} // 다음문제 버튼 출력 함수
+
 function checkAns(){
   var checked=$('#target:checked').val();
   var a=quiz[no].hit-1;
@@ -356,6 +369,8 @@ function checkAns(){
   }
   else {
     printExplain();
+    removeSubmit();
+    printNext();
     // console.log(question.ex[0]);
   }
 }
