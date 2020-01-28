@@ -306,6 +306,9 @@ var point=0;
 var temp;
 var len=quiz.length-1;
 
+var printed = 0;
+var added = 0;
+var submitted = 0;
 
 function printQuiz(){
   var num=no+1; //num은 앞에 문제 번호를 붙이기 위해 선언한 변수로 no가 0이기 때문에 1을 더함
@@ -349,6 +352,19 @@ function removeQuiz(){
   
 }
 
+function printSubmit(){
+  $("#submitWrapper").append('<input type="submit" value="정답확인" id="submitButton">');
+} // 정답확인 버튼 출력 함수
+
+
+function removeSubmit(){
+  removeThing = document.getElementById("submitButton");
+  //submitButton이 있다면 제거
+  if(removeThing){
+    removeThing.parentNode.removeChild(removeThing);
+  }
+  
+} // 정답확인 버튼 제거 함수
 
 function printExplain(){
   var explain= '';
@@ -363,7 +379,11 @@ function printExplain(){
 function printAns(){
   var ans=''
   ans +='<li style="font-size:20px; color:#C60030; margin:0 0 20px 0">정답입니다!</li>';
-  $("#exp").append(ans);
+  if(!printed){
+    $("#exp").append(ans);
+    printed = 1;
+  }
+  
 }
 
 
@@ -372,13 +392,26 @@ function checkAns(){
   var a=quiz[no].hit-1;
   if(checked!=null && no<=len) {
     if(checked==a){
-      point=point+1; //정답일 시 점수 1씩 증가.
+      if(!added){
+        point=point+1; //정답일 시 점수 1씩 증가.
+        added = 1
+        // removeSubmit();
+      }
+      
       printAns();
+      
     }
     else {
+      
       printExplain();
+      
+      
     }
   }
+  submitted = 1;
+  
+  $("#submitButton").hide();
+  
 }
 
 function printResult(){
@@ -391,25 +424,36 @@ function printPoint(){
   $("#p_result").append(pp);
 }
 
+
 printQuiz();
 $('#submitButton').click(function(){
+  
   checkAns();
 })
+
+
+// 다음문제
 $('#nextButton').click(function(){
   if (no < 20) {
     no=no+1;
+    submitted = 0;
+    $("#submitButton").show();
   }
-  
   if (no < 20) {
+    printed = 0
+    added = 0
+    
     removeQuiz();
   }
   $("#exp").html("");
   
   if (no < 20) {
     printQuiz();
+    // printSubmit()
   }
   if(no===(len)){
     console.log("버튼 출력");
+    removeSubmit();
     printResult();
   }
 })
