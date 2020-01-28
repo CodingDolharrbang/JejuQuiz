@@ -445,6 +445,11 @@ $('#nextButton').click(function(){
     
     removeQuiz();
   }
+
+  //마지막 문제에서는 nextbutton 숨김
+  if(no >= 19) {
+    $("#nextButton").hide();
+  }
   $("#exp").html("");
   
   if (no < 20) {
