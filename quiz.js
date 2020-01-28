@@ -321,7 +321,7 @@ function printQuiz(){
       $('tbody').append('<tr>');
       // 보기를 두개씩 주기 위해 2의 배수로 나눠서 나눠떨어질 때만 tr을 삽입하도록 함
     }
-    $('tbody').append('<td style="font-family:나눔고딕; font-size:20px; color:#010730;"><input name="q"'+no+'" id="target" type="radio" value="'+a+'">'+question.examples[a]+'</td>');
+    $('tbody').append(`<td style="font-family:나눔고딕; font-size:20px; color:#010730;"><input name="q${no}" id="target" type="radio" value="${a}">${question.examples[a]}</td>'`);
     if(a%2!=0){
       $('tbody').append('</tr>');
       $('tbody').append('<tr>'+'<td height="20px"'+'</td>'+'</tr>');
@@ -346,33 +346,35 @@ function printSubmit(){
   $("#submitWrapper").append('<input type="submit" value="정답확인" id="submitButton">');
 } // 정답확인 버튼 출력 함수
 
-function removeSubmit(){
-  removeThing = document.getElementById("submitButton");
-  removeThing.parentNode.removeChild(removeThing);
-} // 정답확인 버튼 제거 함수
-
-function printNext(){
-  $("#submitWrapper").append('<input type="submit" value="다음문제" id="nextButton">');
-} // 다음문제 버튼 출력 함수
+// function removeSubmit(){
+//   removeThing = document.getElementById("submitButton");
+//   removeThing.parentNode.removeChild(removeThing);
+// } // 정답확인 버튼 제거 함수
+//
+// function printNext(){
+//   $("#submitWrapper").append('<input type="submit" value="다음문제" id="nextButton">');
+// } // 다음문제 버튼 출력 함수
 
 function checkAns(){
-  var checked=$('#target:checked').val();
+  // var checked=$('#target:checked').val();
+  var checked=$(`input:radio[name=q${no}]:checked`).val();
   var a=quiz[no].hit-1;
   console.log("value값",checked);
   console.log("hit값",a);
-  if(checked==a){
-    point=point+1; //정답일 시 점수 1씩 증가.
-    console.log("점수",point);
-    if(quiz.length>no){
-      printQuiz();
+  console.log("no = ",no);
+  if(checked!=null) {
+    if(checked==a){
+      point=point+1; //정답일 시 점수 1씩 증가.
+      console.log("점수",point);
+      console.log("정답");
     }
-    console.log("정답");
-  }
-  else {
-    printExplain();
-    removeSubmit();
-    printNext();
-    // console.log(question.ex[0]);
+    else {
+      printExplain();
+      // console.log(question.ex[0]);
+    }
+
+    // removeSubmit();
+    // printNext();
   }
 }
 
@@ -384,12 +386,17 @@ function delectRow(){
 
 printQuiz();
 $('#submitButton').click(function(){
-      checkAns();
-  })
-
-$(document).on("click","#nextButton",(function() {
-  delectRow();
-  no=no+1;
-  printQuiz();
   checkAns();
-}))
+})
+$('#nextButton').click(function(){
+  no=no+1;
+  $("#exp").html("");
+  printQuiz();
+})
+
+// $(document).on("click","#nextButton",(function() {
+//   // delectRow();
+//   no=no+1;
+//   printQuiz();
+//   checkAns();
+// }))
