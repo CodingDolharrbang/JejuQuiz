@@ -372,7 +372,7 @@ function checkAns(){
 }
 
 function printResult(){
-  $("#submitWrapper").append('<input type="submit" value="결과확인" id="result">');
+  $("#submitWrapper").append('<button id="result">결과확인</button>');
 }
 
 function printPoint(){
@@ -395,8 +395,8 @@ $('#nextButton').click(function(){
   }
 })
 
-
 $(document).on("click","#result",(function() {
   console.log("click")
   printPoint();
+  location.href="#team";
 }))
