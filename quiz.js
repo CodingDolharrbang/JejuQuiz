@@ -304,6 +304,7 @@ var no=0;
 var point=0;
 
 var temp;
+var len=quiz.length-1;
 
 
 function printQuiz(){
@@ -342,18 +343,13 @@ function printExplain(){
   $("#exp").append(explain);
 } // 틀릴 시, 해설 보여주는 함수.
 
-function printSubmit(){
-  $("#submitWrapper").append('<input type="submit" value="정답확인" id="submitButton">');
-} // 정답확인 버튼 출력 함수
 
-// function removeSubmit(){
-//   removeThing = document.getElementById("submitButton");
-//   removeThing.parentNode.removeChild(removeThing);
-// } // 정답확인 버튼 제거 함수
-//
-// function printNext(){
-//   $("#submitWrapper").append('<input type="submit" value="다음문제" id="nextButton">');
-// } // 다음문제 버튼 출력 함수
+function printAns(){
+  var ans=''
+  ans +='<li style="font-size:20px; color:#C60030;">정답입니다!</li>';
+  $("#exp").append(ans);
+}
+
 
 function checkAns(){
   // var checked=$('#target:checked').val();
@@ -362,27 +358,28 @@ function checkAns(){
   console.log("value값",checked);
   console.log("hit값",a);
   console.log("no = ",no);
-  if(checked!=null) {
+  if(checked!=null && no<=len) {
     if(checked==a){
       point=point+1; //정답일 시 점수 1씩 증가.
+      printAns();
       console.log("점수",point);
       console.log("정답");
     }
     else {
       printExplain();
-      // console.log(question.ex[0]);
     }
-
-    // removeSubmit();
-    // printNext();
   }
 }
 
-function delectRow(){
-  var table=$().parent().parent();
-  table.remove();
+function printResult(){
+  $("#submitWrapper").append('<input type="submit" value="결과확인" id="result">');
 }
 
+function printPoint(){
+  var pp=''
+  pp +=`<p>당신의 점수는 ${point} 점 입니다</p>`;
+  $("#p_result").append(pp);
+}
 
 printQuiz();
 $('#submitButton').click(function(){
@@ -392,11 +389,14 @@ $('#nextButton').click(function(){
   no=no+1;
   $("#exp").html("");
   printQuiz();
+  if(no===(len)){
+    console.log("버튼 출력");
+    printResult();
+  }
 })
 
-// $(document).on("click","#nextButton",(function() {
-//   // delectRow();
-//   no=no+1;
-//   printQuiz();
-//   checkAns();
-// }))
+
+$(document).on("click","#result",(function() {
+  console.log("click")
+  printPoint();
+}))
