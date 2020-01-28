@@ -372,7 +372,7 @@ function checkAns(){
 }
 
 function printResult(){
-  $("#submitWrapper").append('<input type="submit" value="결과확인" id="result">');
+  $("#submitWrapper").append('<input type="submit" value="결과확인" id="result" style="width:100px;border:1; margin: 10px 20px 10px 20px; height:50px;">');
 }
 
 function printPoint(){
