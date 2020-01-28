@@ -352,18 +352,12 @@ function printAns(){
 
 
 function checkAns(){
-  // var checked=$('#target:checked').val();
   var checked=$(`input:radio[name=q${no}]:checked`).val();
   var a=quiz[no].hit-1;
-  console.log("value값",checked);
-  console.log("hit값",a);
-  console.log("no = ",no);
   if(checked!=null && no<=len) {
     if(checked==a){
       point=point+1; //정답일 시 점수 1씩 증가.
       printAns();
-      console.log("점수",point);
-      console.log("정답");
     }
     else {
       printExplain();
