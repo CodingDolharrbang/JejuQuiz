@@ -311,11 +311,16 @@ function printQuiz(){
   var num=no+1; //num은 앞에 문제 번호를 붙이기 위해 선언한 변수로 no가 0이기 때문에 1을 더함
   var question=quiz[no];
 
+  //div는 wrapper 용도 remove할 때 도움
+  // $('tbody').append('<div id='+num+'question>');
+  $('table').append('<tbody>');
+  // $('tbody').append('<td id=currentQuiz>');
   $('tbody').append('<tr>');
   $('tbody').append('<td colspan="2" style="font-family:나눔고딕; font-size:30px; color:#010730; padding: 0 12px 40px 12px; font-weight:bold">'+num+'. '+quiz[no]['question']+'</td>'+'</tr>');
   // ↑ 문제를 테이블에 넣는 코드
   $('tbody').append('<tr>'+'<td height="30px">'+'</td>'+'</tr>');
   // ↑ 문제와 보기 사이에 여백을 주는 코드
+  
 
   for(var a=0; a < question.examples.length; a++){
     if(a%2==0){
@@ -332,7 +337,18 @@ function printQuiz(){
     // 2  3
   }
   $('tbody').append('<tr>'+'<td height="40px"'+'</td>'+'</tr>');
+  $('table').append('</tbody>');
 }
+
+function removeQuiz(){
+  var removeThing = document.querySelector("tbody");
+  if(removeThing){
+    removeThing.parentNode.removeChild(removeThing);
+    console.log("remove")
+  }
+  
+}
+
 
 function printExplain(){
   var explain= '';
@@ -386,9 +402,18 @@ $('#submitButton').click(function(){
   checkAns();
 })
 $('#nextButton').click(function(){
-  no=no+1;
+  if (no < 20) {
+    no=no+1;
+  }
+  
+  if (no < 20) {
+    removeQuiz();
+  }
   $("#exp").html("");
-  printQuiz();
+  
+  if (no < 20) {
+    printQuiz();
+  }
   if(no===(len)){
     console.log("버튼 출력");
     printResult();
