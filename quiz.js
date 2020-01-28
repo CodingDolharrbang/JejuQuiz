@@ -338,7 +338,7 @@ function printExplain(){
   var explain= '';
   var question=quiz[no];
   for(var b=0; b < 2; b++){
-    explain +='<li style="font-size:15px; padding: 0 0 10px 0; color:#1C1C1C;">'+question.ex[b]+'</li>';
+    explain +='<li style="font-size:15px; padding: 0 0 10px 0; color:#1C1C1C;  margin:0 0 20px 0">'+question.ex[b]+'</li>';
   }
   $("#exp").append(explain);
 } // 틀릴 시, 해설 보여주는 함수.
@@ -346,7 +346,7 @@ function printExplain(){
 
 function printAns(){
   var ans=''
-  ans +='<li style="font-size:20px; color:#C60030;">정답입니다!</li>';
+  ans +='<li style="font-size:20px; color:#C60030; margin:0 0 20px 0">정답입니다!</li>';
   $("#exp").append(ans);
 }
 
