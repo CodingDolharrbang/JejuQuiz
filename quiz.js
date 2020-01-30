@@ -309,6 +309,7 @@ var len=quiz.length-1;
 var printed = 0;
 var added = 0;
 var submitted = 0;
+var resulted = 0;
 
 function printQuiz(){
   var num=no+1; //num은 앞에 문제 번호를 붙이기 위해 선언한 변수로 no가 0이기 때문에 1을 더함
@@ -464,7 +465,11 @@ $('#nextButton').click(function(){
 })
 
 $(document).on("click","#result",(function() {
-  console.log("click")
-  printPoint();
-  location.href="#team";
+
+  if(resulted == 0) {
+    console.log("click")
+    printPoint();
+    location.href="#team";
+    resulted = 1;
+  }
 }))
