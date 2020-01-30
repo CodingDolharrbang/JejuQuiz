@@ -323,7 +323,7 @@ function printQuiz(){
   // ↑ 문제를 테이블에 넣는 코드
   $('tbody').append('<tr>'+'<td height="30px">'+'</td>'+'</tr>');
   // ↑ 문제와 보기 사이에 여백을 주는 코드
-  
+
 
   for(var a=0; a < question.examples.length; a++){
     if(a%2==0){
@@ -349,7 +349,7 @@ function removeQuiz(){
     removeThing.parentNode.removeChild(removeThing);
     console.log("remove")
   }
-  
+
 }
 
 function printSubmit(){
@@ -363,7 +363,7 @@ function removeSubmit(){
   if(removeThing){
     removeThing.parentNode.removeChild(removeThing);
   }
-  
+
 } // 정답확인 버튼 제거 함수
 
 function printExplain(){
@@ -383,35 +383,43 @@ function printAns(){
     $("#exp").append(ans);
     printed = 1;
   }
-  
+
 }
 
 
 function checkAns(){
   var checked=$(`input:radio[name=q${no}]:checked`).val();
-  var a=quiz[no].hit-1;
-  if(checked!=null && no<=len) {
-    if(checked==a){
-      if(!added){
-        point=point+1; //정답일 시 점수 1씩 증가.
-        added = 1
-        // removeSubmit();
-      }
-      
-      printAns();
-      
-    }
-    else {
-      
-      printExplain();
-      
-      
-    }
+  if(checked==null){
+    alert("보기를 선택해주세요");
+    submitted = 0;
   }
-  submitted = 1;
-  
-  $("#submitButton").hide();
-  
+  else{
+    var a=quiz[no].hit-1;
+    if(checked!=null && no<=len) {
+      if(checked==a){
+        if(!added){
+          point=point+1; //정답일 시 점수 1씩 증가.
+          added = 1
+          // removeSubmit();
+        }
+
+        printAns();
+
+      }
+      else {
+
+        printExplain();
+
+
+      }
+    }
+    submitted = 1;
+
+    $("#submitButton").hide();
+
+  }
+
+
 }
 
 function printResult(){
@@ -427,7 +435,7 @@ function printPoint(){
 
 printQuiz();
 $('#submitButton').click(function(){
-  
+
   checkAns();
 })
 
@@ -442,7 +450,7 @@ $('#nextButton').click(function(){
   if (no < 20) {
     printed = 0
     added = 0
-    
+
     removeQuiz();
   }
 
@@ -451,7 +459,7 @@ $('#nextButton').click(function(){
     $("#nextButton").hide();
   }
   $("#exp").html("");
-  
+
   if (no < 20) {
     printQuiz();
     // printSubmit()
