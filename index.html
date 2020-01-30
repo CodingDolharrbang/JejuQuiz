@@ -22,24 +22,6 @@
   <link href="css/inoo.css" rel="stylesheet">
   <link href="button.css" rel="stylesheet">
   <link href="result.css" rel="stylesheet">
-  <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
-  <script type="text/javascript">
-  (function(){ // emailJS 유저 ID
-    emailjs.init("<YOUR USER ID>"); })();
-  </script>
-  <script type="text/javascript"> window.onload = function() { // form id, #contact-form 안에 있는 것들 전송
-    document.getElementById('contactForm').addEventListener('submit', function(event)
-    { event.preventDefault(); this.contact_number.value = Math.random() * 100000 | 0;
-      // 서비스 id, 이메일 템플릿
-      emailjs.sendForm('contact_service', 'contact_template', this); });
-    }
-</script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
-<script type="text/javascript">
-   (function(){
-      emailjs.init('gmail','template_INEs50Gq',this);
-   })();
-</script>
 
 </head>
 
