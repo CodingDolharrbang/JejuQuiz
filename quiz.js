@@ -311,6 +311,10 @@ var added = 0;
 var submitted = 0;
 var resulted = 0;
 
+
+$("#nextButton").hide();
+
+
 function printQuiz(){
   var num=no+1; //num은 앞에 문제 번호를 붙이기 위해 선언한 변수로 no가 0이기 때문에 1을 더함
   var question=quiz[no];
@@ -415,7 +419,13 @@ function checkAns(){
     submitted = 1;
 
     $("#submitButton").hide();
-
+    if (no<19){
+      $("#nextButton").show();
+    }
+    else {
+      $("#result").show();
+    }
+    
   }
 
 
@@ -424,6 +434,9 @@ function checkAns(){
 
 function printResult(){
   $("#submitWrapper").append('<button id="result">결과확인</button>');
+  $("#result").hide();
+  $("#submitButton").show();
+
 }
 
 function printPoint(){
@@ -454,6 +467,7 @@ $('#nextButton').click(function(){
       added = 0
 
       removeQuiz();
+      $("#nextButton").hide();
     }
 
     //마지막 문제에서는 nextbutton 숨김
@@ -468,7 +482,7 @@ $('#nextButton').click(function(){
     }
     if(no===(len)){
       console.log("버튼 출력");
-      removeSubmit();
+      // removeSubmit();
       printResult();
     }
   }
