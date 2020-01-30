@@ -410,8 +410,6 @@ function checkAns(){
       else {
 
         printExplain();
-
-
       }
     }
     submitted = 1;
@@ -422,6 +420,7 @@ function checkAns(){
 
 
 }
+
 
 function printResult(){
   $("#submitWrapper").append('<button id="result">결과확인</button>');
@@ -443,33 +442,40 @@ $('#submitButton').click(function(){
 
 // 다음문제
 $('#nextButton').click(function(){
-  if (no < 20) {
-    no=no+1;
-    submitted = 0;
-    $("#submitButton").show();
-  }
-  if (no < 20) {
-    printed = 0
-    added = 0
+  var value=$(`input:radio[name=q${no}]:checked`).val();
+  if(value!=null){
+    if (no < 20) {
+      no=no+1;
+      submitted = 0;
+      $("#submitButton").show();
+    }
+    if (no < 20) {
+      printed = 0
+      added = 0
 
-    removeQuiz();
+      removeQuiz();
+    }
+
+    //마지막 문제에서는 nextbutton 숨김
+    if(no >= 19) {
+      $("#nextButton").hide();
+    }
+    $("#exp").html("");
+
+    if (no < 20) {
+      printQuiz();
+      // printSubmit()
+    }
+    if(no===(len)){
+      console.log("버튼 출력");
+      removeSubmit();
+      printResult();
+    }
+  }
+  else{
+    alert("보기를 선택해주세요!")
   }
 
-  //마지막 문제에서는 nextbutton 숨김
-  if(no >= 19) {
-    $("#nextButton").hide();
-  }
-  $("#exp").html("");
-
-  if (no < 20) {
-    printQuiz();
-    // printSubmit()
-  }
-  if(no===(len)){
-    console.log("버튼 출력");
-    removeSubmit();
-    printResult();
-  }
 })
 
 $(document).on("click","#result",(function() {
